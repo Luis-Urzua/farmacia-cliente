@@ -52,11 +52,22 @@ class AuthController extends Controller
             ]
         );
 
-        dd(
-            $response->status(),
-            $response->body()
-        );
-    }
+        if ($response->successful()) {
+
+            $data = $response->json();
+
+            session([
+                'token' => $data['token'],
+                'cliente' => $data['cliente']
+            ]);
+
+            return redirect('/');
+        }
+
+        return back()->withErrors([
+            'login' => 'Credenciales incorrectas'
+        ]);
+    }   
 
     public function perfil()
     {
