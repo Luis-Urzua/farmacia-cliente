@@ -27,7 +27,6 @@ class AuthController extends Controller
             'password' => $request->password
         ]);
 
-        // verificar si hubo error
         if (!$response->successful()) {
 
             dd($response->body());
