@@ -10,7 +10,7 @@ class ProductoController extends Controller
 
     public function __construct()
     {
-        $this->api = env('API_URL');
+        $this->api = config('app.api_url');
     }
 
     public function catalogo()
