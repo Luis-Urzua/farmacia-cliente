@@ -50,6 +50,8 @@ class PagoController extends Controller
             ]
         ]);
 
+        dd($paypalOrder);
+
         foreach ($paypalOrder['links'] as $link) {
 
             if ($link['rel'] == 'approve') {
