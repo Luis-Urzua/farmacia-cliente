@@ -52,7 +52,10 @@ class AuthController extends Controller
             ]
         );
 
-        dd($response->json());
+        dd(
+            $response->status(),
+            $response->body()
+        );
     }
 
     public function perfil()
