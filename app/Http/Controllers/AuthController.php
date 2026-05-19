@@ -44,24 +44,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $response = Http::post($this->api . '/login', [
-            'correo' => $request->correo,
-            'password' => $request->password
-        ]);
+        $response = Http::post(
+            env('API_URL') . '/login',
+            [
+                'correo' => $request->correo,
+                'password' => $request->password
+            ]
+        );
 
-        if ($response->successful()) {
-
-            $data = $response->json();
-
-            session([
-                'token' => $data['token'],
-                'cliente' => $data['cliente']
-            ]);
-
-            return redirect('/perfil');
-        }
-
-        return back()->with('error', 'Credenciales incorrectas');
+        dd($response->json());
     }
 
     public function perfil()
